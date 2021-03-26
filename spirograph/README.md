@@ -13,7 +13,7 @@
 
 https://en.wikipedia.org/wiki/Spirograph
 
-[![Watch the video](https://img.youtube.com/vi/ELrkairuidA/hqdefault.jpg)](https://youtu.be/ELrkairuidA)
+[![Spirograph](https://j.gifs.com/6XrAw7.gif)](https://youtu.be/ELrkairuidA)
 
 按上圖可播放影片 [video](https://user-images.githubusercontent.com/3252557/112140435-f69f5500-8c0e-11eb-8d72-f6d272ddf684.mp4)
 
