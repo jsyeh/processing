@@ -1,6 +1,9 @@
+PImage imgBG;
+//https://gentlejourneysbirthing.com/home/colorful_watercolor_texture_by_connyduck-d6o409f/
 ArrayList<PVector> points;
 void setup(){
-  size(640,480,P2D);
+  size(800,600,P2D);
+  imgBG=loadImage("watercolor_texture.png");
   stroke(255);
   noFill();
   points = new ArrayList<PVector>();
@@ -10,10 +13,19 @@ float r0=225, r1=57, r2=37.3;
 float cx=320, cy=240;
 float angle;
 void draw(){
-  background(0);
+  background(imgBG);
+  colorMode(RGB);
+  stroke(255);
+  strokeWeight(1);
   ellipse(cx,cy, r0*2, r0*2);
+  angle += deltaAngle();
+  float angle2= -angle * r0 / r1;
+  float x=cx+(r0-r1)*cos(angle), y=cy+(r0-r1)*sin(angle);
+  //line(cx,cy, x, y);//不要畫線,比較好看
+  circle2(x,y, r1, angle2);
   colorMode(HSB);
   float H=0;
+  strokeWeight(3);
   beginShape();
   for( PVector pt : points ){
     stroke( H, 255,255);
@@ -22,13 +34,6 @@ void draw(){
     if(H>255) H-=255;
   }
   endShape();
-  colorMode(RGB);
-  stroke(255);
-  angle += deltaAngle();
-  float angle2= -angle * r0 / r1;
-  float x=cx+(r0-r1)*cos(angle), y=cy+(r0-r1)*sin(angle);
-  line(cx,cy, x, y);
-  circle2(x,y, r1, angle2);
   //if(mousePressed) saveFrame();
 }
 void circle2(float cx, float cy, float r, float angle){
