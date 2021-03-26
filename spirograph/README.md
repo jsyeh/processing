@@ -15,9 +15,9 @@
 
 https://en.wikipedia.org/wiki/Spirograph
 
-[![Spirograph](https://j.gifs.com/6XrAw7.gif)](https://youtu.be/ELrkairuidA)
+按下圖可播放影片
 
-按上圖可播放影片 [video](https://user-images.githubusercontent.com/3252557/112140435-f69f5500-8c0e-11eb-8d72-f6d272ddf684.mp4)
+[![Spirograph](https://j.gifs.com/mOLWg9.gif)](https://youtu.be/9_6XOOiyvkA)
 
 程式實作的過程記錄
 ===============
@@ -268,7 +268,7 @@ Step09 彩色的線條
 - Processing 用 2010 QuickTime Movie Maker 做出來的 mov 檔, 無法在 Windows 電影與電視播放(無法播放: 此項目的編碼格式是不支援的格式。0xc00d5212)。 使用 Messenger 也無法傳送。我目前是先在 FB貼文後, 再下載 mp4 檔。
 - Can't play: This item was encoded in a format that's not supported. 0xc00d5212
 
-
+[![Spirograph](https://j.gifs.com/6XrAw7.gif)](https://youtu.be/ELrkairuidA)
 
 ```Processing
 ArrayList<PVector> points;
@@ -420,6 +420,7 @@ void draw(){
 ```
 
 接著, 便能將程式改版出來了。
+[![Spirograph](https://j.gifs.com/lxKWVj.gif)][https://user-images.githubusercontent.com/3252557/112619853-c18b4080-8e62-11eb-9f74-ff68881f5c5f.mp4]
 
 ```Processing
 PImage imgBG;
