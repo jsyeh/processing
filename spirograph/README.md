@@ -420,7 +420,7 @@ void draw(){
 ```
 
 接著, 便能將程式改版出來了。
-[![Spirograph](https://j.gifs.com/lxKWVj.gif)][https://user-images.githubusercontent.com/3252557/112619853-c18b4080-8e62-11eb-9f74-ff68881f5c5f.mp4]
+[![Spirograph](https://j.gifs.com/lxKWVj.gif)](https://user-images.githubusercontent.com/3252557/112619853-c18b4080-8e62-11eb-9f74-ff68881f5c5f.mp4]
 
 ```Processing
 PImage imgBG;
@@ -495,4 +495,6 @@ void mouseDragged(){//按下mouse才開始記錄點
   points.add( new PVector(x2,y2) );
   drawPG();
 }
+
+[![Spirograph](https://j.gifs.com/mOLWg9.gif)](https://youtu.be/9_6XOOiyvkA)
 ```
