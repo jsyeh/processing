@@ -6,10 +6,12 @@
 - [FB影片](https://www.facebook.com/watch/?v=274789904222202) 廣告詞: 🎨 這是一個幾乎被遺忘的童年玩具 🌟有利於培養孩子的動手能力 ✨ 開發智力和思維能力🎁🎁 立即获取👉https://bit.ly/3smHtiO [賣場](https://tw.weicskgl.com/detail1?id=542)
 - [露天spirograph](https://www.ruten.com.tw/find/?q=spirograph)
 - [蝦皮spirograph](https://shopee.tw/search?keyword=spirograph)
+- [蝦皮有賣家96元](https://shopee.tw/27Pcs-Kids%E5%8E%9F%E8%A3%9DSpirograph%E8%A8%AD%E8%A8%88%E5%9C%96%E7%B4%99%E9%8C%AB%E7%B9%AA%E8%A3%BD%E8%97%9D%E8%A1%93%E5%B7%A5%E8%97%9D%E7%8E%A9%E5%85%B7-KT%E6%AF%8D%E5%AC%B0-i.77521276.4565438982)
 
 雖然看起來像詐騙風格的一頁式網頁, 不過我覺得這個玩具很好玩。會想要寫程式畫畫看。
 
 我之前實作到一半就分心, 因為看到後面漸的色彩, 我反而去找背景圖, 這樣就不行了。現在我打算用線條的方式, 慢慢畫出來。
+要漸層背景的話, 可找 rainbow scratch paper 刮畫紙。
 
 https://en.wikipedia.org/wiki/Spirograph
 
@@ -329,6 +331,66 @@ void mouseDragged(){//按下mouse才開始記錄點
 Step10 準備可刮花的背景圖
 ----------------------
 在記錄線條時, 要用很長的陣列來畫線, 好像有點麻煩。為了讓線條有漸層的色彩, 或許可改用刮畫的方式來做, 也就是黑色背景被刮掉後, 便會秀出藏在後面的漸層背景圖。
+這個版本先把圓變細、曲線變粗、把背景換圖。之後再想怎麼在蓋上可刮花的mask。
 ```Processing
-
+PImage imgBG;
+//https://gentlejourneysbirthing.com/home/colorful_watercolor_texture_by_connyduck-d6o409f/
+ArrayList<PVector> points;
+void setup(){
+  size(800,600,P2D);
+  imgBG=loadImage("watercolor_texture.png");
+  stroke(255);
+  noFill();
+  points = new ArrayList<PVector>();
+  angle = atan2(-cy, -cx);//一開始mouseX,mouseY為0,所以角度向左上角
+}//之後可引導 mousePressed 在小齒輪後, 才能開始控制轉動
+float r0=225, r1=57, r2=37.3;
+float cx=320, cy=240;
+float angle;
+void draw(){
+  background(imgBG);
+  colorMode(RGB);
+  stroke(255);
+  strokeWeight(1);
+  ellipse(cx,cy, r0*2, r0*2);
+  angle += deltaAngle();
+  float angle2= -angle * r0 / r1;
+  float x=cx+(r0-r1)*cos(angle), y=cy+(r0-r1)*sin(angle);
+  //line(cx,cy, x, y);//不要畫線,比較好看
+  circle2(x,y, r1, angle2);
+  colorMode(HSB);
+  float H=0;
+  strokeWeight(3);
+  beginShape();
+  for( PVector pt : points ){
+    stroke( H, 255,255);
+    vertex(pt.x, pt.y);//之後可變彩色漸層色彩
+    H+=1;
+    if(H>255) H-=255;
+  }
+  endShape();
+  //if(mousePressed) saveFrame();
+}
+void circle2(float cx, float cy, float r, float angle){
+  ellipse(cx,cy, r*2, r*2);
+  for(float a=angle; a<angle+PI*2;a+=PI/4){
+    line(cx,cy, cx+r*cos(a), cy+r*sin(a));
+  }
+}
+float deltaAngle(){
+  float angleNow=atan2(mouseY-cy,mouseX-cx);
+  float angleOld=atan2(pmouseY-cy,pmouseX-cx);
+  float delta = angleNow - angleOld;
+  if( abs(delta)> PI ){
+    if(delta>0) delta-=PI*2;
+    else delta += PI*2;
+  }
+  return delta;
+}
+void mouseDragged(){//按下mouse才開始記錄點
+  float angle2= -angle * r0 / r1;
+  float x=cx+(r0-r1)*cos(angle), y=cy+(r0-r1)*sin(angle);  
+  float x2=x+r2*cos(angle2), y2=y+r2*sin(angle2); 
+  points.add( new PVector(x2,y2) );
+}
 ```
