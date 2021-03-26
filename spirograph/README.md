@@ -495,6 +495,6 @@ void mouseDragged(){//按下mouse才開始記錄點
   points.add( new PVector(x2,y2) );
   drawPG();
 }
-
+```
 [![Spirograph](https://j.gifs.com/mOLWg9.gif)](https://youtu.be/9_6XOOiyvkA)
 ```
